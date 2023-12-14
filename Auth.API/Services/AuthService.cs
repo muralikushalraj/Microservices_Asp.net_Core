@@ -46,7 +46,8 @@ namespace Auth.API.Services
             {
                 return new LoginResponseDto() { User = null, Token = "" };
             }
-            var token = _jwtGenerator.GenerateToken(user);
+            var roles = await _userManager.GetRolesAsync(user);
+            var token = _jwtGenerator.GenerateToken(user, roles);
             UserDto userDTO = new()
             {
                 Email = user.Email,

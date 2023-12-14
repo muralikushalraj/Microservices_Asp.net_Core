@@ -1,12 +1,10 @@
 using AutoMapper;
-using Catalog.API;
-using Catalog.API.Data;
-using Catalog.API.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+using Products.API;
+using Products.API.Data;
+using Products.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +13,11 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -46,8 +46,8 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 builder.AddAppAuthentication();
-builder.Services.AddAuthorization();
 
+builder.Services.AddAuthorization();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -58,11 +58,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
-
+app.UseStaticFiles();
 app.MapControllers();
 ApplyMigrations();
 app.Run();

@@ -2,6 +2,7 @@
 using Catalog.API.Data;
 using Catalog.API.Models;
 using Catalog.API.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Catalog.API.Controllers
 {
     [Route("api/coupon")]
     [ApiController]
+    [Authorize]
     public class CouponApiController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -69,6 +71,7 @@ namespace Catalog.API.Controllers
             return _response;
         }
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public object? Post([FromBody] CouponDto coupon)
         {
             try
@@ -86,6 +89,7 @@ namespace Catalog.API.Controllers
             return _response;
         }
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public object? Put([FromBody] CouponDto coupon)
         {
             try
@@ -104,6 +108,7 @@ namespace Catalog.API.Controllers
         }
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "ADMIN")]
         public object? Delete(int id)
         {
             try
