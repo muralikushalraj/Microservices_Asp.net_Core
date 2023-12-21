@@ -12,9 +12,11 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<ICouponService, CouponService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddHttpClient<IProductService, ProductService>();
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 
@@ -25,8 +27,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Auth/Login";
         options.AccessDeniedPath = "/Auth/AccessDenied";
     });
-StaticData.CouponApiUrl = builder.Configuration["ServiceUrls:CouponApi"];
-StaticData.AuthApiUrl = builder.Configuration["ServiceUrls:AuthApi"];
+StaticData.CouponAPIBase = builder.Configuration["ServiceUrls:CouponApi"];
+StaticData.AuthAPIBase = builder.Configuration["ServiceUrls:AuthApi"];
+StaticData.ProductAPIBase = builder.Configuration["ServiceUrls:ProductAPI"];
 
 var app = builder.Build();
 

@@ -17,7 +17,7 @@ namespace WebApp.Services
             {
                 ApiType = ApiType.POST,
                 Data = coupon,
-                Url = CouponApiUrl + "/api/coupon"
+                Url = CouponAPIBase + "/api/coupon"
             });
         }
 
@@ -26,7 +26,7 @@ namespace WebApp.Services
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = ApiType.DELETE,
-                Url = CouponApiUrl + "/api/coupon/" + couponId
+                Url = CouponAPIBase + "/api/coupon/" + couponId
             });
         }
 
@@ -35,7 +35,7 @@ namespace WebApp.Services
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = ApiType.GET,
-                Url = CouponApiUrl + "/api/coupon"
+                Url = CouponAPIBase + "/api/coupon"
             });
         }
 
@@ -44,7 +44,7 @@ namespace WebApp.Services
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = ApiType.GET,
-                Url = CouponApiUrl + "/api/coupon/" + couponId
+                Url = CouponAPIBase + "/api/coupon/" + couponId
             });
         }
 
@@ -53,7 +53,7 @@ namespace WebApp.Services
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = ApiType.GET,
-                Url = CouponApiUrl + "/api/coupon/GetByCode/" + couponCode
+                Url = CouponAPIBase + "/api/coupon/GetByCode/" + couponCode
             });
         }
 
@@ -63,7 +63,7 @@ namespace WebApp.Services
             {
                 ApiType = ApiType.PUT,
                 Data = coupon,
-                Url = CouponApiUrl + $"/api/coupon"
+                Url = CouponAPIBase + $"/api/coupon"
             });
         }
     }

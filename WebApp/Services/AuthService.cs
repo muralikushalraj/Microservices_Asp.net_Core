@@ -18,7 +18,7 @@ namespace WebApp.Services
             {
                 ApiType = ApiType.POST,
                 Data = registrationRequestDto,
-                Url = AuthApiUrl + "/api/auth/AssignRole"
+                Url = AuthAPIBase + "/api/auth/AssignRole"
             });
         }
 
@@ -28,7 +28,7 @@ namespace WebApp.Services
             {
                 ApiType = ApiType.POST,
                 Data = loginRequestDto,
-                Url = AuthApiUrl + "/api/auth/login"
+                Url = AuthAPIBase + "/api/auth/login"
             }, withBearer: false);
         }
 
@@ -38,7 +38,7 @@ namespace WebApp.Services
             {
                 ApiType = ApiType.POST,
                 Data = registrationRequestDto,
-                Url = AuthApiUrl + "/api/auth/register"
+                Url = AuthAPIBase + "/api/auth/register"
             }, withBearer: false);
         }
     }
